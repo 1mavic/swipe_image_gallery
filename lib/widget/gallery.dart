@@ -89,6 +89,7 @@ class _GalleryState extends State<Gallery> {
               );
             },
             itemCount: widget.children?.length ?? widget.itemCount,
+            scrollDirection: Axis.vertical,
             physics: _scrollEnabled
                 ? BouncingScrollPhysics()
                 : NeverScrollableScrollPhysics(),
