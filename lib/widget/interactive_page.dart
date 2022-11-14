@@ -144,20 +144,20 @@ class _InteractivePageState extends State<InteractivePage>
   void onDoubleTap() {}
 
   void onHorizontalDragEndHandler(DragEndDetails details) {
-    double pixelsPerSecond = _dragPosition.dy.abs();
+    double pixelsPerSecond = _dragPosition.dx.abs();
     if (pixelsPerSecond > (widget.dismissDragDistance)) {
       Navigator.pop(context);
     } else {
       widget.setBackgroundOpacity(1.0);
-      animateDragPosition(_dragPosition.dy);
+      animateDragPosition(_dragPosition.dx);
     }
   }
 
   void onHorizontalDragUpdateHandler(DragUpdateDetails details) {
     setState(
-        () => _dragPosition = Offset(0.0, _dragPosition.dy + details.delta.dy));
+        () => _dragPosition = Offset(0.0, _dragPosition.dx + details.delta.dx));
 
-    final ratio = 1 - (_dragPosition.dy.abs() / widget.dismissDragDistance);
+    final ratio = 1 - (_dragPosition.dx.abs() / widget.dismissDragDistance);
     widget.setBackgroundOpacity(ratio > 0 ? ratio : 0);
   }
 
