@@ -75,12 +75,12 @@ class _InteractivePageState extends State<InteractivePage>
     super.dispose();
   }
 
-  void animateDragPosition(double offsetY) {
-    final _offsetTween = Tween<double>(begin: offsetY, end: 0)
+  void animateDragPosition(double offsetX) {
+    final _offsetTween = Tween<double>(begin: offsetX, end: 0)
         .animate(_translateToCenterController);
     void animationListener() {
       setState(() {
-        _dragPosition = Offset(0, _offsetTween.value);
+        _dragPosition = Offset( _offsetTween.value,0);
       });
       if (_translateToCenterController.isCompleted) {
         _offsetTween.removeListener(animationListener);
@@ -155,7 +155,7 @@ class _InteractivePageState extends State<InteractivePage>
 
   void onHorizontalDragUpdateHandler(DragUpdateDetails details) {
     setState(
-        () => _dragPosition = Offset(0.0, _dragPosition.dx + details.delta.dx));
+        () => _dragPosition = Offset(, _dragPosition.dx + details.delta.dx,0.0));
 
     final ratio = 1 - (_dragPosition.dx.abs() / widget.dismissDragDistance);
     widget.setBackgroundOpacity(ratio > 0 ? ratio : 0);
