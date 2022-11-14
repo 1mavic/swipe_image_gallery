@@ -155,7 +155,7 @@ class _InteractivePageState extends State<InteractivePage>
 
   void onHorizontalDragUpdateHandler(DragUpdateDetails details) {
     setState(
-        () => _dragPosition = Offset(, _dragPosition.dx + details.delta.dx,0.0));
+        () => _dragPosition = Offset(_dragPosition.dx + details.delta.dx,0.0));
 
     final ratio = 1 - (_dragPosition.dx.abs() / widget.dismissDragDistance);
     widget.setBackgroundOpacity(ratio > 0 ? ratio : 0);
