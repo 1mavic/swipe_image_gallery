@@ -143,7 +143,7 @@ class _InteractivePageState extends State<InteractivePage>
   /// Required for `onDoubleTapDown` to work
   void onDoubleTap() {}
 
-  void onVerticalDragEndHandler(DragEndDetails details) {
+  void onHorizontalDragEndHandler(DragEndDetails details) {
     double pixelsPerSecond = _dragPosition.dy.abs();
     if (pixelsPerSecond > (widget.dismissDragDistance)) {
       Navigator.pop(context);
@@ -153,7 +153,7 @@ class _InteractivePageState extends State<InteractivePage>
     }
   }
 
-  void onVerticalDragUpdateHandler(DragUpdateDetails details) {
+  void onHorizontalDragUpdateHandler(DragUpdateDetails details) {
     setState(
         () => _dragPosition = Offset(0.0, _dragPosition.dy + details.delta.dy));
 
@@ -174,14 +174,14 @@ class _InteractivePageState extends State<InteractivePage>
             bottom: -_dragPosition.dy,
             right: -_dragPosition.dx,
             child: GestureDetector(
-              onVerticalDragStart: _zoomed
+              onHorizontalDragStart: _zoomed
                   ? null
                   : (_) {
                       _translateToCenterController.reset();
                     },
-              onVerticalDragUpdate:
-                  !_zoomed ? onVerticalDragUpdateHandler : null,
-              onVerticalDragEnd: !_zoomed ? onVerticalDragEndHandler : null,
+              onHorizontalDragUpdate:
+                  !_zoomed ? onHorizontalDragUpdateHandler : null,
+              onHorizontalDragEnd: !_zoomed ? onHorizontalDragEndHandler : null,
               onDoubleTapDown: doubleTapDownHandler,
               onDoubleTap: onDoubleTap,
               child: InteractiveViewer(
